@@ -69,11 +69,11 @@ class _WeatherForecastState extends State<WeatherForecast> {
           decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Color(0xfffcdd73)),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(30),
             ),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.white),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(30),
             ),
             hintText: "Enter city name",
             hintStyle: TextStyle(color: Colors.white),
@@ -83,7 +83,7 @@ class _WeatherForecastState extends State<WeatherForecast> {
             ),
             focusColor: Color(0xfffcdd73),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(30),
             ),
             contentPadding: EdgeInsets.all(8),
           ),
