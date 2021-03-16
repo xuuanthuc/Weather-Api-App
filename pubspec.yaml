@@ -31,6 +31,8 @@ dependencies:
   http: ^0.12.0+2
   url_launcher: ^5.4.0
   intl: ^0.16.0
+  flutter_svg: ^0.19.1
+  sunrise_sunset: ^1.0.4
 
 dev_dependencies:
   flutter_test:
@@ -48,8 +50,19 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/clear_am.png
+    - assets/images/clear_pm.png
+    - assets/images/clouds_am.png
+    - assets/images/clouds_pm.png
+    - assets/images/drizzle.png
+    - assets/images/rain.png
+    - assets/images/rain_am.png
+    - assets/images/rain_pm.png
+    - assets/images/snow.png
+    - assets/images/smoke.png
+    - assets/images/thunderstorm.png
+    - assets/images/map.svg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

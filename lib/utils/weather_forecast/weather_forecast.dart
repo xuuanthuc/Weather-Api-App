@@ -19,59 +19,87 @@ class _WeatherForecastState extends State<WeatherForecast> {
     getWeatherData = NetWork().getWeatherForecast(cityName: _cityName);
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          textFieldView(),
-          FutureBuilder(
-            future: getWeatherData,
-            builder: (BuildContext context, AsyncSnapshot<WeatherForecastModel> snapshot) {
-              if (snapshot.hasData) {
-                print(snapshot.data);
-                return Column(
-                  children: [
-                    Container(
-                      height: 200,
-                      child: midView(snapshot),
+      body: Container(
+        decoration: BoxDecoration(
+          color: Color(0xff100f14),
+        ),
+        child: ListView(
+          children: [
+            FutureBuilder(
+              future: getWeatherData,
+              builder: (BuildContext context,
+                  AsyncSnapshot<WeatherForecastModel> snapshot) {
+                if (snapshot.hasData) {
+                  print(snapshot.data);
+                  return Column(
+                    children: [
+                      Container(
+                        child: midView(context, snapshot),
+                      ),
+                    ],
+                  );
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(Color(0xfffcdd73)),
                     ),
-                  ],
-                );
-              } else {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-            },
-          ),
-        ],
+                  );
+                }
+              },
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            textFieldView(),
+          ],
+        ),
       ),
     );
   }
 
   Widget textFieldView() {
     return Container(
-      child: TextField(
-        decoration: InputDecoration(
-          hintText: "Enter city name",
-          prefixIcon: Icon(Icons.search),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30),
+        child: TextField(
+          style: TextStyle(color: Colors.white),
+          decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Color(0xfffcdd73)),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.white),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            hintText: "Enter city name",
+            hintStyle: TextStyle(color: Colors.white),
+            prefixIcon: Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+            focusColor: Color(0xfffcdd73),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            contentPadding: EdgeInsets.all(8),
           ),
-          contentPadding: EdgeInsets.all(8),
+          cursorColor: Colors.white,
+          onSubmitted: (value) {
+            setState(() {
+              _cityName = value;
+              print(_cityName);
+              getWeatherData = getWeather(cityName: _cityName);
+            });
+          },
         ),
-        onSubmitted: (value) {
-          setState(() {
-             _cityName = value;
-             print(_cityName);
-            getWeatherData = getWeather(cityName: _cityName);
-          });
-        },
       ),
     );
   }
 
-  Future<WeatherForecastModel> getWeather({String cityName}) => NetWork().getWeatherForecast(cityName: _cityName);
+  Future<WeatherForecastModel> getWeather({String cityName}) =>
+      NetWork().getWeatherForecast(cityName: _cityName);
 }
